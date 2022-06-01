@@ -15,8 +15,8 @@ const insertScamScore = (domainname, scamscore, requestTime) => __awaiter(void 0
     try {
         yield config_1.pool.query(`INSERT INTO scamscores (domainname, scamscore, createddate) VALUES ($1, $2, $3) `, [domainname, scamscore, requestTime]);
     }
-    catch (err) {
-        throw new Error("Error inserting records");
+    catch (error) {
+        throw error;
     }
 });
 exports.insertScamScore = insertScamScore;
@@ -26,8 +26,8 @@ const getScamScoreTrend = (domainname, timerange) => __awaiter(void 0, void 0, v
         const scamscorerange = yield config_1.pool.query(`SELECT domainname, scamscore, createddate as RequestTime FROM scamscores WHERE domainname = ($1) AND ( createddate >= ($2) AND createddate <=  ($3))`, [domainname, range[0], range[1]]);
         return scamscorerange.rows;
     }
-    catch (err) {
-        throw new Error("Error retrieving records");
+    catch (error) {
+        throw error;
     }
 });
 exports.getScamScoreTrend = getScamScoreTrend;

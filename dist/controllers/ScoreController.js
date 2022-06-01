@@ -29,7 +29,7 @@ const calculateScamScore = (req, res, next) => __awaiter(void 0, void 0, void 0,
         return res.status(200).json({ scamscore: scamscore });
     }
     catch (error) {
-        throw new Error();
+        throw error;
     }
 });
 exports.calculateScamScore = calculateScamScore;
@@ -42,7 +42,7 @@ const getScamScore = (req, res, next) => __awaiter(void 0, void 0, void 0, funct
         return res.status(200).json({ scamscoretrend: scamscoretrend });
     }
     catch (error) {
-        throw new Error();
+        throw error;
     }
 });
 exports.getScamScore = getScamScore;

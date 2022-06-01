@@ -14,8 +14,8 @@ export const insertScamScore = async (
       `INSERT INTO scamscores (domainname, scamscore, createddate) VALUES ($1, $2, $3) `,
       [domainname, scamscore, requestTime]
     );
-  } catch (err) {
-    throw new Error("Error inserting records");
+  } catch (error) {
+    throw error;    
   }
  
 }; 
@@ -36,7 +36,7 @@ export const getScamScoreTrend = async (
 
     
     return scamscorerange.rows;
-  } catch (err) {
-   throw new Error("Error retrieving records");
+  } catch (error) {
+    throw error;   
   }
 }; 

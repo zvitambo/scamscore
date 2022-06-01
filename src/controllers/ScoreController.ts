@@ -28,7 +28,7 @@ export const calculateScamScore: RequestHandler = async (req, res, next) => {
         return res.status(200).json({ scamscore: scamscore });
        
      } catch (error) {
-     throw new Error();
+      throw error;   
      }
 };
 
@@ -44,7 +44,7 @@ export const getScamScore: RequestHandler = async (req, res, next) => {
     return res.status(200).json({ scamscoretrend: scamscoretrend });
 
   } catch (error) {
-    throw new Error();
+     throw error;   
   }
 };
 
