@@ -1,4 +1,4 @@
-import { CreateDomainInput } from './../dto/DomainDto';
+import { CreateDomainInput } from '../dto/DomainDto';
 import {
   DATA_ANALYSIS_ENDPOINT_URL,
   DATA_ANALYSIS_ENDPOINT_API_KEY,

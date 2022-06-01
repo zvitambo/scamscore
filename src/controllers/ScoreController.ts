@@ -1,8 +1,10 @@
 import { RequestHandler } from "express";
-import { CreateDomainInput, CreateLastAnalysisStatsInput} from '../dto';
+import { CreateDomainInput} from '../dto';
 import { CheckIsValidDomain } from '../utility';
-import { getLastAnalysisStats } from './StatsController';
-import { insertScamScore, getScamScoreTrend } from "../persistence/controllers";
+import {
+  getLastAnalysisStats, insertScamScore,
+  getScamScoreTrend,
+} from "../services";
 
 
 

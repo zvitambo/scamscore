@@ -1,0 +1,51 @@
+{
+	"info": {
+		"_postman_id": "7930f35c-453d-432d-8436-26b8939e6a4b",
+		"name": "scamscore",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:5000/score/",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"domainname\": \"www.google.com\",\n\t\"timeRange\": \"2022-05-01 2022-06-01\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/score/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"score",
+						""
+					],
+					"query": [
+						{
+							"key": "domainname",
+							"value": "https://wrestlinglive.in",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Scam score request for domain security testing "
+			},
+			"response": []
+		}
+	]
+}

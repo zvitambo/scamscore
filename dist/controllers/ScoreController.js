@@ -11,19 +11,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getScamScore = exports.calculateScamScore = void 0;
 const utility_1 = require("../utility");
-const StatsController_1 = require("./StatsController");
-const controllers_1 = require("../persistence/controllers");
+const services_1 = require("../services");
 const calculateScamScore = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { domainname, timeRange } = req.body;
         if (domainname.length < 0 || !(0, utility_1.CheckIsValidDomain)(domainname))
             return res.status(400).json(`Invalid domain name ${domainname}`);
         const requestTime = new Date();
-        const { harmless, malicious, suspicious, undetected, timeout } = yield (0, StatsController_1.getLastAnalysisStats)(domainname);
+        const { harmless, malicious, suspicious, undetected, timeout } = yield (0, services_1.getLastAnalysisStats)(domainname);
         const scamscore = (100 / (harmless - undetected - timeout)) * (malicious + suspicious);
-        yield (0, controllers_1.insertScamScore)(domainname, scamscore, requestTime);
+        yield (0, services_1.insertScamScore)(domainname, scamscore, requestTime);
         if (timeRange !== undefined) {
-            const scamscoretrend = yield (0, controllers_1.getScamScoreTrend)(domainname, timeRange);
+            const scamscoretrend = yield (0, services_1.getScamScoreTrend)(domainname, timeRange);
             return res.status(200).json({ scamscore: scamscore, scamscoretrend: scamscoretrend });
         }
         return res.status(200).json({ scamscore: scamscore });
@@ -38,7 +37,7 @@ const getScamScore = (req, res, next) => __awaiter(void 0, void 0, void 0, funct
         const { domainname, timeRange } = req.body;
         if (domainname.length < 0 || !(0, utility_1.CheckIsValidDomain)(domainname))
             return res.status(400).json(`Invalid domain name ${domainname}`);
-        const scamscoretrend = yield (0, controllers_1.getScamScoreTrend)(domainname, timeRange);
+        const scamscoretrend = yield (0, services_1.getScamScoreTrend)(domainname, timeRange);
         return res.status(200).json({ scamscoretrend: scamscoretrend });
     }
     catch (error) {
